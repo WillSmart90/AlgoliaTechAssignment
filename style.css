@@ -1,0 +1,89 @@
+
+.topSection {
+    background-color: darkslateblue;
+    background-size: auto;
+}
+
+.cuisineSectionTitle {
+    padding-left: 4%;
+    padding-top: 1.5%;
+}
+
+.cuisineSection {
+    padding-left: 5%;
+}
+
+.rightSideSection, .results {
+    padding-left: 40%;
+    padding-bottom: 75%;
+    inline-size: 750px;
+    overflow-wrap: break-word;
+}
+
+.ratingSectionTitle {
+    padding-left: 4%;
+}
+
+.ratingSectionDiv {
+    padding-bottom: -500px;
+}
+
+.ratingSectionStars {
+    padding-left: 2%;
+}
+
+.paymentSectionTitle {
+    padding-left: 4%;
+}
+
+.searchDiv {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.searchBox {
+    padding-left: 1%;
+    padding-top: 1%;
+    padding-right: 1%;
+    padding-bottom: 1%;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 0.1fr 0.1fr;
+    grid-gap: 75px;
+}
+
+ul
+{ 
+overflow-x:hidden;
+white-space:nowrap; 
+height: 10em;
+width: 50%;
+} 
+
+li
+{ 
+display:inline; 
+}
+
+ul li {
+    background-image: none; /* used as a fallback */
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-size: 18px;
+    list-style: none;
+    height: 75px;
+    line-height: 30px;
+    padding: 0 0 0 20px;
+    size: 10px;
+}
+
+.vl {
+    border-left: 1.5px solid grey;
+    height: 100%;
+    position: absolute;
+    left: 33%;
+    margin-left: -3px;
+    top: 20%;
+  }

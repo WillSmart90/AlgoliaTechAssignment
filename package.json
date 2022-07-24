@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "algoliasearch": "^4.13.1",
+    "algoliasearch-helper": "^3.10.0",
+    "jsdom": "^20.0.0",
+    "node-fetch": "^3.2.8"
+  }
+}

@@ -1,0 +1,28 @@
+
+let restaurantList = require('./resources/dataset/restaurants_list.json')
+
+let restaurantInfo = require('./resources/dataset/restaurants_info.json')
+
+
+for (let i = 0; i < restaurantInfo.length; i++) {
+    for (let j = 0; j < restaurantList.length; j++) {
+        if (restaurantList[j].objectID === restaurantInfo[i].objectID) {
+            restaurantList[j].type_of_cuisine = restaurantInfo[i].food_type;
+            //console.log(restaurantList[j]);
+            restaurantList[j].phone = restaurantInfo[i].phone_number
+            console.log(restaurantList[j]);
+        }
+    }
+    //console.log(restaurantInfo[i].phone_number);
+}
+
+var fs = require('fs');
+let updatedResaturantList = JSON.stringify(restaurantList); //convert it back to json
+
+fs.writeFile('./resources/dataset/restaurants_list.json', updatedResaturantList, (err) => {
+    if (err)
+        console.log(err);
+    else {
+        console.log('Successful');
+    }
+});

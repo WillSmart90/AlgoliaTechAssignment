@@ -1,0 +1,214 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Restaurant Locator - by Algolia</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+      #search-box {
+        margin: 1em 1em 3em;
+        width: calc(100% - 2em);
+        padding: 1em;
+		
+        border: 1px solid #ccc;
+        border-radius: 2px;
+        box-sizing: border-box;
+      }
+      
+      #facet-list,
+      #container{
+		  min-width:200px;
+	  display:grid;
+       /* max-width: 150px;*/
+        width: 100%;
+        float: left;
+        padding: 0 1em;
+        margin: 0;
+		height:auto;
+		overflow-y:clip;
+        list-style: none;
+		text-align:left;
+      }
+      
+      #facet-list li {
+		height:auto;
+        padding: 6px 0;
+        border-bottom: 1px solid #ccc;
+      }
+      #facet-list li input {
+        margin-right: 6px;
+      }
+      
+      #container {
+        max-width: calc(100% - 150px - 4em);
+      }
+      #container li {
+        padding: 8px 0 20px;
+      }
+      #container em {
+        background: yellow;
+      }
+      </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/g/algoliasearch@3(algoliasearchLite.min.js),algoliasearch.helper@2"></script>
+  </head>
+  <body>
+    <section class="topSection">
+      <center>
+        <div class="searchDiv">
+          <input id="searchBox" class="searchBox" type="search" size="170" placeholder="Search for Restaurant by Name, Cuisine, Location" autocomplete="off" autocorrect="off" 
+      autocapitalize="off" spellcheck="false" required="" maxlength="700" class="ais-SearchBox-input" value="">
+        </div>
+      </center>
+      <!--<ul id=container></ul> -->
+    </section>
+<div style="width:35%;float:left">
+    <section class="cuisineSectionTitle">
+      <div>
+          <h3>
+            Cuisine/Food Type
+          </h3>
+      </div>
+    </section>
+    <section class="cuisineSection">
+      <div class="grid-container">
+<ul id="facet-list"><li></li></ul>
+    </div>
+    </section>
+	
+    <section class="ratingSectionTitle">
+      <div>
+        <h3>
+          Rating
+        </h3>
+      </div>
+    
+    </section>
+
+    <section class="ratingSectionStars">
+      <div class="ratingSectionDiv">
+        <ul>
+          <li style="background-image: url('./resources/graphics/star-empty.png');"></li>
+          <li style="background-image: url('./resources/graphics/star-empty.png');"></li>
+          <li style="background-image: url('./resources/graphics/star-empty.png');"></li>
+          <li style="background-image: url('./resources/graphics/star-empty.png');"></li>
+          <li style="background-image: url('./resources/graphics/star-empty.png');"></li>
+        </ul>
+        <ul style="margin-top: -150px";>
+          <li style="background-image: url('./resources/graphics/stars-plain.png');"></li>
+          <li style="background-image: url('./resources/graphics/star-empty.png');"></li>
+          <li style="background-image: url('./resources/graphics/star-empty.png');"></li>
+          <li style="background-image: url('./resources/graphics/star-empty.png');"></li>
+          <li style="background-image: url('./resources/graphics/star-empty.png');"></li>
+        </ul>
+        <ul style="margin-top: -150px";>
+          <li style="background-image: url('./resources/graphics/stars-plain.png');"></li>
+          <li style="background-image: url('./resources/graphics/stars-plain.png');"></li>
+          <li style="background-image: url('./resources/graphics/star-empty.png');"></li>
+          <li style="background-image: url('./resources/graphics/star-empty.png');"></li>
+          <li style="background-image: url('./resources/graphics/star-empty.png');"></li>
+        </ul>
+        <ul style="margin-top: -150px";>
+          <li style="background-image: url('./resources/graphics/stars-plain.png');"></li>
+          <li style="background-image: url('./resources/graphics/stars-plain.png');"></li>
+          <li style="background-image: url('./resources/graphics/stars-plain.png');"></li>
+          <li style="background-image: url('./resources/graphics/star-empty.png');"></li>
+          <li style="background-image: url('./resources/graphics/star-empty.png');"></li>
+        </ul>
+        <ul style="margin-top: -150px";>
+          <li style="background-image: url('./resources/graphics/stars-plain.png');"></li>
+          <li style="background-image: url('./resources/graphics/stars-plain.png');"></li>
+          <li style="background-image: url('./resources/graphics/stars-plain.png');"></li>
+          <li style="background-image: url('./resources/graphics/stars-plain.png');"></li>
+          <li style="background-image: url('./resources/graphics/star-empty.png');"></li>
+        </ul>
+        <ul style="margin-top: -150px";>
+          <li style="background-image: url('./resources/graphics/stars-plain.png');"></li>
+          <li style="background-image: url('./resources/graphics/stars-plain.png');"></li>
+          <li style="background-image: url('./resources/graphics/stars-plain.png');"></li>
+          <li style="background-image: url('./resources/graphics/stars-plain.png');"></li>
+          <li style="background-image: url('./resources/graphics/stars-plain.png');"></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="paymentSectionTitle" style="margin-top: -120px";>
+      <div>
+        <h3>
+          Payment Options
+        </h3>
+      </div>
+    </section>
+</div>
+<div style="width:60%;float: left;">
+    <section class="rightSideSection">
+      <center>
+        <div style="">
+           <ul class="results" id="container"></ul> 
+        </div>
+    </center>
+    </section>
+	</div>
+    <div class="vl"></div>
+
+
+  <!--<div class="welcome-container">
+    <p>Hello buddy!</p>
+    <p>Welcome to the Solutions Engineering assignment.</p>
+    <p>This blank page is all yours, let's make it rock!</p>
+  </div> -->
+  
+ <!-- <script src="main.js"></script>-->
+
+  <script src="https://cdn.jsdelivr.net/g/algoliasearch@3(algoliasearchLite.min.js),algoliasearch.helper@2"></script>
+  <script>
+  var applicationID = '7GJUNPE42F';
+  var apiKey = '6af184052e4addc5a324c277a48e301b';
+  var index = 'interview_candidate';
+  var client = algoliasearch(applicationID, apiKey);
+  var helper = algoliasearchHelper(client, index, {
+  facets: ['type_of_cuisine']
+});
+  
+  helper.on('result', function(content) {
+	  renderFacetList(content);
+    renderHits(content);
+  });
+  $('#facet-list').on('click', 'input[type=checkbox]', function(e) {
+  var facetValue = $(this).data('facet');  
+  helper.toggleRefinement('type_of_cuisine', facetValue)
+        .search();
+});
+  function renderFacetList(content) { console.log(content.getFacetValues('type_of_cuisine'));
+  $('#facet-list').html(function() {
+    return $.map(content.getFacetValues('type_of_cuisine'), function(facet) {console.log(facet);
+      var checkbox = $('<input type=checkbox>')
+        .data('facet', facet.name)
+        .attr('id', 'fl-' + facet.name);
+      if(facet.isRefined) checkbox.attr('checked', 'checked');
+      var label = $('<label>').html(facet.name + ' (' + facet.count + ')')
+                              .attr('for', 'fl-' + facet.name);
+      return $('<li>').append(checkbox).append(label);
+    });
+  });
+}
+
+  function renderHits(content) {
+    $('#container').html(function() {
+  return $.map(content.hits, function(hit) {
+        return '<li><div style="float:left;width:60px;height:100px"><img style="width:50px;display:inline" src="'+hit._highlightResult.image_url.value+'"/></div><strong>' + hit._highlightResult.name.value + '</strong><br />Price: '+hit._highlightResult.price.value+'<br />Type: '+hit._highlightResult.type_of_cuisine.value+'</li>';
+      });
+    });
+  }
+  $('#searchBox').on('keyup', function() {
+    helper.setQuery($(this).val())
+          .search();
+  });
+  helper.search();
+
+  </script>
+
+  </body>
+</html>
